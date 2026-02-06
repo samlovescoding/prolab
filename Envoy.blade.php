@@ -7,56 +7,44 @@
 @endsetup
 
 @story('deploy')
-    pull
-    composer
-    frontend
-    optimize
-    migrate
-    restart
+  pull
+  composer
+  frontend
+  optimize
+  migrate
 @endstory
 
 @task('pull')
-    echo "Pulling latest from {{ $branch }}..."
-    cd {{ $directory }}
-    git pull origin {{ $branch }}
+  echo "Pulling latest from {{ $branch }}..."
+  cd {{ $appDir }}
+  git pull origin {{ $branch }}
 @endtask
 
 @task('composer')
-    echo "Installing composer dependencies..."
-    cd {{ $directory }}
-    composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+  echo "Installing composer dependencies..."
+  cd {{ $appDir }}
+  composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 @endtask
 
 @task('frontend')
-    echo "Building frontend assets..."
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    cd {{ $directory }}
-    npm ci
-    npm run build
+  echo "Building frontend assets..."
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  cd {{ $appDir }}
+  npm ci
+  npm run build
 @endtask
 
+
 @task('optimize')
-    echo "Optimizing Laravel..."
-    cd {{ $directory }}
-    php artisan optimize:clear
-    php artisan optimize
+  echo "Optimizing Laravel..."
+  cd {{ $appDir }}
+  php artisan optimize:clear
+  php artisan optimize
 @endtask
 
 @task('migrate')
-    echo "Running migrations..."
-    cd {{ $directory }}
-    php artisan migrate --force
+  echo "Running migrations..."
+  cd {{ $appDir }}
+  php artisan migrate --force
 @endtask
-
-@task('restart')
-    echo "Restarting services..."
-    cd {{ $directory }}
-    php artisan queue:restart
-    sudo systemctl reload php8.5-fpm
-    echo "Deploy complete!"
-@endtask
-
-@finished
-    echo "Deployment finished successfully.";
-@endfinished

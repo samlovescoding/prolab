@@ -1,9 +1,8 @@
 @servers(['prolab' => 'sam@192.168.1.100'])
 
 @setup
-    $repository = 'github:samlovescoding/prolab';
-    $directory = '/var/www/prolab.sampan.dev';
-    $branch = 'main';
+  $appDir = '/var/www/prolab.sampan.dev';
+  $branch = 'main';
 @endsetup
 
 @story('deploy')

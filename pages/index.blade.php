@@ -12,8 +12,6 @@ new class extends Component
   <title>Welcome</title>
   <h1 class="text-4xl">Prolab Server</h1>
 
-  TEST
-
   <flux:spacer class="h-12" />
 
   <flux:text>

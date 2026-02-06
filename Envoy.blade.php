@@ -51,7 +51,7 @@
     echo "Restarting services..."
     cd {{ $directory }}
     php artisan queue:restart
-    sudo systemctl reload php8.3-fpm
+    sudo systemctl reload php8.5-fpm
     echo "Deploy complete!"
 @endtask
 

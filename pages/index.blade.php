@@ -9,7 +9,7 @@ new class extends Component {
 
 <div>
   <title>Welcome</title>
-  <h1 class="text-4xl">Prolab Server v2</h1>
+  <h1 class="text-4xl">Prolab Server</h1>
 
   <flux:spacer class="h-12" />
 

@@ -15,7 +15,7 @@ new class extends Component {
 
   <flux:text>
     <strong>Processor</strong>: AMD Ryzen 9 5900X <br />
-    Cores: 13
+    Cores: 12
     Threads: 24
   </flux:text>
 
